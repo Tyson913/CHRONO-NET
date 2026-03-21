@@ -1,7 +1,9 @@
 import OpenAI from "openai";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 async function extractInternetData(internetData) {
