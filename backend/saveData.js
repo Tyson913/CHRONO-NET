@@ -1,0 +1,2 @@
+import { FormatData } from "./AutomaticDataGenerator";
+
