@@ -1,0 +1,23 @@
+# Node modules (don’t upload huge dependencies)
+node_modules/
+
+# Environment variables / secrets
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build / Dist folders (generated files)
+dist/
+build/
+
+# Optional: IDE/editor files
+.vscode/
+.idea/
+firebase-debug.log
