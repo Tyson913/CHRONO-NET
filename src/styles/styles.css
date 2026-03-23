@@ -150,6 +150,12 @@ pre, p {
 
     .char-visible { opacity: 1; filter: blur(0); }
 
+    #resultBox {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
     /* --- TIGHTER RESPONSIVE QUERIES --- */
 
     /* Desktop & Laptop */

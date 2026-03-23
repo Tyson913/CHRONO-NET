@@ -12,4 +12,4 @@ for (const key in data) {
     years[key] = data[key];
 }
 
-export {data};
+export{data};
