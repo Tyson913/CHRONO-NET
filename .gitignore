@@ -1,2 +1,6 @@
 .env
 db_p.RM
+backend/*.log
+.chrome-profile-*
+.edge-profile-*
+.md
