@@ -217,7 +217,7 @@ const DATA = {
         ]
     },
 
-    // ── 2001 ──
+
     2001: {
         videos: [
             { title: "9/11 News Streams — The Web as Crisis Medium", tag: "News", meta: "CNN / MSNBC streams · Sep 2001", desc: "For the first time, millions turned to the web for live news during a national crisis — and crashed every major news site in the process.", views: "Millions overwhelmed servers", bar: 100, featured: true },
@@ -251,7 +251,7 @@ const DATA = {
         ]
     },
 
-    // ── 2002 ──
+
     2002: {
         videos: [
             { title: "Star Wars Kid (leaked to internet)", tag: "Viral", meta: "Kazaa · Apr 2002", desc: "A Quebec teenager's self-filmed lightsaber practice leaked onto Kazaa without his knowledge and became one of the most-watched videos of the pre-YouTube era.", views: "First viral video — 900M+ views over time", bar: 100, featured: true },
@@ -285,7 +285,7 @@ const DATA = {
         ]
     },
 
-    // ── 2003 ──
+
     2003: {
         videos: [
             { title: "Gary Brolsma 'Numa Numa' — Original Recording", tag: "Viral", meta: "Self-recorded · 2003", desc: "Gary Brolsma filmed himself joyfully lip-syncing to the Romanian pop song 'Dragostea Din Tei' on his webcam — and quietly uploaded it. The internet did the rest.", views: "700M+ eventually", bar: 100, featured: true },
@@ -1212,7 +1212,7 @@ function scheduleContentIconFallbackRefresh() {
 
 window.addEventListener('load', scheduleContentIconFallbackRefresh);
 
-// ── PAGE SYSTEM ──
+
 function showPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + name).classList.add('active');
@@ -1220,17 +1220,17 @@ function showPage(name) {
         a.classList.toggle('active', a.dataset.page === name);
     });
     window.scrollTo(0, 0);
-    // close mobile nav and restore toggle visibility
+
     document.getElementById('mainNav').classList.remove('open');
     document.getElementById('navToggle').style.visibility = 'visible';
 }
 
-// ── MOBILE NAV TOGGLE ──
+
 document.getElementById('navToggle').addEventListener('click', () => {
     const nav = document.getElementById('mainNav');
     const toggle = document.getElementById('navToggle');
     nav.classList.toggle('open');
-    // Hide the toggle while the menu is open so it doesn't overlap the close button
+
     toggle.style.visibility = nav.classList.contains('open') ? 'hidden' : 'visible';
 });
 
@@ -1239,24 +1239,24 @@ document.getElementById('navClose').addEventListener('click', () => {
     document.getElementById('navToggle').style.visibility = 'visible';
 });
 
-// ── ABOUT SIDEBAR TYPEWRITER (no-op — replaced by canvas) ──
-function initSidebarTypewriter() { /* replaced by aboutCanvas */ }
 
-// Add the fadeChar keyframe (kept for safety)
+function initSidebarTypewriter() {  }
+
+
 const styleSheet = document.createElement('style');
 styleSheet.textContent = `@keyframes fadeChar { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }`;
 document.head.appendChild(styleSheet);
 
 initSidebarTypewriter();
 
-// ── ABOUT PAGE: MEMORY WEB CANVAS ──
+
 (function () {
     const canvas = document.getElementById('aboutCanvas');
     if (!canvas) return;
 
-    // Words that float as nodes — internet culture vocabulary
+
     const WORDS = [
-        // eras & tech
+
         { t: 'GeoCities', tier: 0 }, { t: 'Napster', tier: 0 },
         { t: 'Flash', tier: 0 }, { t: 'Dial-up', tier: 0 },
         { t: 'AIM', tier: 1 }, { t: 'Geocaching', tier: 2 },
@@ -1267,7 +1267,7 @@ initSidebarTypewriter();
         { t: 'RSS', tier: 2 }, { t: 'Tumblr', tier: 1 },
         { t: 'Vine', tier: 1 }, { t: 'Reddit', tier: 0 },
         { t: 'TikTok', tier: 0 }, { t: 'ChatGPT', tier: 0 },
-        // memes / culture
+
         { t: 'LOLcats', tier: 1 }, { t: 'Rickroll', tier: 1 },
         { t: 'Doge', tier: 1 }, { t: 'Harambe', tier: 2 },
         { t: 'Gangnam Style', tier: 1 }, { t: 'Ice Bucket', tier: 2 },
@@ -1284,7 +1284,7 @@ initSidebarTypewriter();
 
     let nodes = [], raf, t = 0;
     let mouseX = -999, mouseY = -999;
-    let ripples = []; // { x, y, r, life }
+    let ripples = [];
 
     function resize() {
         const rect = canvas.parentElement.getBoundingClientRect();
@@ -1296,7 +1296,7 @@ initSidebarTypewriter();
         const W = canvas.width, H = canvas.height;
         nodes = WORDS.map((w, i) => {
             const angle = (i / WORDS.length) * Math.PI * 2 + Math.random() * 0.4;
-            // tier 0 = close to centre, tier 2 = outer ring
+
             const radiusFrac = 0.18 + w.tier * 0.22 + Math.random() * 0.1;
             const r = Math.min(W, H) * 0.5 * radiusFrac;
             return {
@@ -1310,11 +1310,11 @@ initSidebarTypewriter();
                 orbitR: r,
                 orbitSpeed: (0.0003 + Math.random() * 0.0004) * (Math.random() < 0.5 ? 1 : -1),
                 baseAlpha: 0.35 + (2 - w.tier) * 0.18,
-                alpha: 0,               // animated in
+                alpha: 0,
                 pulse: Math.random() * Math.PI * 2,
                 pulseSpeed: 0.4 + Math.random() * 0.6,
                 hovered: false,
-                fontSize: (11 - w.tier * 2),  // px before dpr
+                fontSize: (11 - w.tier * 2),
             };
         });
     }
@@ -1327,7 +1327,7 @@ initSidebarTypewriter();
 
         ctx.clearRect(0, 0, W, H);
 
-        // ── BACKGROUND ──
+
         const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(W, H) * 0.6);
         bg.addColorStop(0, 'rgba(18,15,10,1)');
         bg.addColorStop(0.6, 'rgba(14,13,11,1)');
@@ -1335,12 +1335,12 @@ initSidebarTypewriter();
         ctx.fillStyle = bg;
         ctx.fillRect(0, 0, W, H);
 
-        // ── CENTRAL CORE ──
-        // Breathing glow
+
+
         const breathe = 0.5 + 0.5 * Math.sin(t * 0.7);
         const coreR = (8 + breathe * 4) * dpr;
 
-        // Outer halos
+
         for (const [frac, alpha] of [[2.2, 0.04], [1.5, 0.09], [1.0, 0.18]]) {
             const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR * frac * 5);
             g.addColorStop(0, rgba(SEPIA, alpha));
@@ -1351,7 +1351,7 @@ initSidebarTypewriter();
             ctx.fill();
         }
 
-        // Core ring
+
         ctx.save();
         ctx.strokeStyle = rgba(SEPIA, 0.3 + breathe * 0.25);
         ctx.lineWidth = 0.75;
@@ -1360,7 +1360,7 @@ initSidebarTypewriter();
         ctx.stroke();
         ctx.restore();
 
-        // Core dot
+
         const coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
         coreGrad.addColorStop(0, rgba(PAPER, 0.9));
         coreGrad.addColorStop(0.5, rgba(SEPIA, 0.6));
@@ -1370,7 +1370,7 @@ initSidebarTypewriter();
         ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
         ctx.fill();
 
-        // ── ORBIT RINGS (decorative dashed) ──
+
         ctx.save();
         ctx.setLineDash([2 * dpr, 8 * dpr]);
         for (const [tier, a] of [[0, 0.06], [1, 0.04], [2, 0.03]]) {
@@ -1386,14 +1386,14 @@ initSidebarTypewriter();
         ctx.setLineDash([]);
         ctx.restore();
 
-        // ── CONNECTIONS ──
-        // Draw edges between nearby nodes and from each node to core
+
+
         const CONNECT_DIST_SQ = (Math.min(W, H) * 0.28) ** 2;
 
         for (let i = 0; i < nodes.length; i++) {
             const a = nodes[i];
 
-            // Node → core
+
             const distCoreSq = (a.x - cx) ** 2 + (a.y - cy) ** 2;
             const distCore = Math.sqrt(distCoreSq);
             const coreAlpha = Math.max(0, 0.12 - distCore / (Math.min(W, H) * 0.6)) * a.alpha;
@@ -1406,7 +1406,7 @@ initSidebarTypewriter();
                 ctx.stroke();
             }
 
-            // Node → node
+
             for (let j = i + 1; j < nodes.length; j++) {
                 const b = nodes[j];
                 const dsq = (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
@@ -1427,14 +1427,14 @@ initSidebarTypewriter();
             }
         }
 
-        // ── NODES ──
+
         for (const node of nodes) {
-            // Orbit motion
+
             node.orbitAngle += node.orbitSpeed;
             node.x += ((cx + Math.cos(node.orbitAngle) * node.orbitR) - node.x) * 0.008;
             node.y += ((cy + Math.sin(node.orbitAngle) * node.orbitR) - node.y) * 0.008;
 
-            // Mouse repulsion (gentle)
+
             const mdx = node.x - mouseX * dpr;
             const mdy = node.y - mouseY * dpr;
             const md = Math.sqrt(mdx * mdx + mdy * mdy);
@@ -1449,20 +1449,20 @@ initSidebarTypewriter();
             node.vx *= 0.92;
             node.vy *= 0.92;
 
-            // Fade in
+
             node.alpha = Math.min(1, node.alpha + 0.006);
 
-            // Pulse
+
             node.pulse += node.pulseSpeed * 0.016;
             const pulseFac = 0.85 + 0.15 * Math.sin(node.pulse);
 
-            // Hover detection
+
             const tx = (mouseX * dpr - node.x), ty = (mouseY * dpr - node.y);
             node.hovered = Math.sqrt(tx * tx + ty * ty) < 28 * dpr;
 
             const finalAlpha = node.baseAlpha * node.alpha * pulseFac * (node.hovered ? 2 : 1);
 
-            // Glow behind hovered node
+
             if (node.hovered) {
                 const glow = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 22 * dpr);
                 glow.addColorStop(0, rgba(SEPIA, 0.35));
@@ -1473,14 +1473,14 @@ initSidebarTypewriter();
                 ctx.fill();
             }
 
-            // Dot
+
             const dotR = (2.2 - node.tier * 0.4) * dpr * (node.hovered ? 1.6 : 1);
             ctx.fillStyle = rgba(node.tier === 0 ? PAPER : SEPIA, finalAlpha);
             ctx.beginPath();
             ctx.arc(node.x, node.y, dotR, 0, Math.PI * 2);
             ctx.fill();
 
-            // Label
+
             const fsize = (node.fontSize + (node.hovered ? 1 : 0)) * dpr;
             const fontW = node.tier === 0 ? '600' : '400';
             ctx.font = `${fontW} ${fsize}px 'DM Mono', monospace`;
@@ -1490,7 +1490,7 @@ initSidebarTypewriter();
             ctx.fillText(node.word, node.x, node.y - dotR - 4 * dpr);
         }
 
-        // ── RIPPLES ──
+
         ripples = ripples.filter(r => r.life > 0);
         for (const rp of ripples) {
             ctx.strokeStyle = rgba(SEPIA, rp.life * 0.5);
@@ -1502,13 +1502,13 @@ initSidebarTypewriter();
             rp.life -= 0.025;
         }
 
-        // ── LABEL ──
+
         ctx.font = `${8 * dpr}px 'DM Mono', monospace`;
         ctx.fillStyle = rgba(SEPIA, 0.28);
         ctx.textAlign = 'left';
         ctx.fillText('OUR MISSION', 0, 10 * dpr);
 
-        // CRT vignette
+
         const vig = ctx.createRadialGradient(cx, cy, Math.min(W, H) * 0.25, cx, cy, Math.min(W, H) * 0.7);
         vig.addColorStop(0, 'rgba(0,0,0,0)');
         vig.addColorStop(1, 'rgba(0,0,0,0.55)');
@@ -1519,7 +1519,7 @@ initSidebarTypewriter();
         raf = requestAnimationFrame(draw);
     }
 
-    // Mouse tracking
+
     canvas.addEventListener('mousemove', e => {
         const r = canvas.getBoundingClientRect();
         mouseX = e.clientX - r.left;
@@ -1548,12 +1548,12 @@ initSidebarTypewriter();
     obs.observe(canvas);
 })();
 
-// ── MANIFESTO CANVAS ANIMATION ──
+
 (function () {
     const canvas = document.getElementById('manifestoCanvas');
     if (!canvas) return;
 
-    // Milestones: [year, label, weight 0-1]
+
     const MILESTONES = [
         [1994, 'Netscape', 0.15],
         [1995, 'Amazon', 0.28],
@@ -1583,8 +1583,8 @@ initSidebarTypewriter();
     const PAPER = 'rgba(244,240,232,';
 
     let raf, t = 0;
-    let scanLine = 0;   // 0..1, the "read head" crawling down
-    let particles = []; // floating data-particles
+    let scanLine = 0;
+    let particles = [];
     let glitchTimer = 0;
     let hoveredMs = null;
 
@@ -1598,7 +1598,7 @@ initSidebarTypewriter();
         return ((year - 1994) / (2025 - 1994)) * (h * 0.88) + h * 0.06;
     }
 
-    // Smooth noise
+
     function noise(x) {
         return Math.sin(x * 1.7) * 0.5 + Math.sin(x * 3.1) * 0.3 + Math.sin(x * 7.3) * 0.2;
     }
@@ -1619,10 +1619,10 @@ initSidebarTypewriter();
         const W = canvas.width, H = canvas.height;
         const dpr = devicePixelRatio;
 
-        // === BACKGROUND ===
+
         ctx.clearRect(0, 0, W, H);
 
-        // Dark panel with subtle gradient
+
         const bg = ctx.createLinearGradient(0, 0, 0, H);
         bg.addColorStop(0, 'rgba(10,9,7,0.97)');
         bg.addColorStop(0.5, 'rgba(14,13,11,1)');
@@ -1630,7 +1630,7 @@ initSidebarTypewriter();
         ctx.fillStyle = bg;
         ctx.fillRect(0, 0, W, H);
 
-        // Horizontal grid lines — like oscilloscope
+
         ctx.strokeStyle = SEPIA + '0.06)';
         ctx.lineWidth = 0.5;
         for (let i = 0; i <= 10; i++) {
@@ -1641,7 +1641,7 @@ initSidebarTypewriter();
             ctx.stroke();
         }
 
-        // Center axis
+
         const axisX = W * 0.38;
         ctx.strokeStyle = SEPIA + '0.12)';
         ctx.lineWidth = 0.5;
@@ -1652,21 +1652,21 @@ initSidebarTypewriter();
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // === THE SIGNAL LINE ===
-        // A waveform running from top (1994) to bottom (2025)
-        // with organic noise + milestones creating spikes
+
+
+
 
         const signalPoints = [];
         const STEPS = Math.floor(H * 0.88 / 2);
         for (let i = 0; i <= STEPS; i++) {
-            const fy = i / STEPS;                    // 0..1 top to bottom
+            const fy = i / STEPS;
             const year = 1994 + fy * 31;
             const py = H * 0.06 + fy * H * 0.88;
 
-            // Base organic noise
+
             let signal = noise(fy * 8 + t * 0.3) * 0.18;
 
-            // Add milestone spikes
+
             for (const [ms, , wt] of MILESTONES) {
                 const dist = Math.abs(year - ms);
                 if (dist < 1.5) {
@@ -1675,7 +1675,7 @@ initSidebarTypewriter();
                 }
             }
 
-            // Glitch wobble
+
             if (glitchTimer > 0) {
                 signal += (Math.random() - 0.5) * 0.12 * glitchTimer;
             }
@@ -1685,7 +1685,7 @@ initSidebarTypewriter();
             signalPoints.push([px, py, signal]);
         }
 
-        // Glow pass (wide, faint)
+
         ctx.save();
         ctx.strokeStyle = SEPIA + '0.18)';
         ctx.lineWidth = 6 * dpr;
@@ -1696,7 +1696,7 @@ initSidebarTypewriter();
         ctx.filter = 'none';
         ctx.restore();
 
-        // Core line
+
         const lineGrad = ctx.createLinearGradient(0, H * 0.06, 0, H * 0.94);
         lineGrad.addColorStop(0, SEPIA + '0.3)');
         lineGrad.addColorStop(0.35, SEPIA + '0.7)');
@@ -1710,7 +1710,7 @@ initSidebarTypewriter();
         signalPoints.forEach(([x, y], i) => i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y));
         ctx.stroke();
 
-        // === SCAN LINE (read head) ===
+
         const scanY = H * 0.06 + scanLine * H * 0.88;
         const scanGrad = ctx.createLinearGradient(0, scanY - 40, 0, scanY + 40);
         scanGrad.addColorStop(0, SEPIA + '0)');
@@ -1719,11 +1719,11 @@ initSidebarTypewriter();
         ctx.fillStyle = scanGrad;
         ctx.fillRect(0, scanY - 40, W, 80);
 
-        // Scan line cursor dot
+
         const scanIdx = Math.floor(scanLine * STEPS);
         if (signalPoints[scanIdx]) {
             const [sx, sy] = signalPoints[scanIdx];
-            // Halo
+
             ctx.save();
             ctx.filter = `blur(${3 * dpr}px)`;
             ctx.fillStyle = PAPER + '0.5)';
@@ -1732,17 +1732,17 @@ initSidebarTypewriter();
             ctx.fill();
             ctx.filter = 'none';
             ctx.restore();
-            // Dot
+
             ctx.fillStyle = PAPER + '0.95)';
             ctx.beginPath();
             ctx.arc(sx, sy, 2.5, 0, Math.PI * 2);
             ctx.fill();
 
-            // Occasionally spawn particles at scan position
+
             if (Math.random() < 0.15) spawnParticle(sx, sy);
         }
 
-        // === MILESTONES ===
+
         const monoFont = `${10 * dpr}px 'DM Mono', monospace`;
         const serifFont = `700 ${11 * dpr}px 'Playfair Display', Georgia, serif`;
 
@@ -1751,22 +1751,22 @@ initSidebarTypewriter();
             const fy = (year - 1994) / 31;
             const py = H * 0.06 + fy * H * 0.88;
 
-            // Find signal X at this Y
+
             const idx = Math.floor(fy * STEPS);
             const [sigX] = signalPoints[Math.min(idx, signalPoints.length - 1)] || [axisX, py];
 
-            // Distance of scan from this milestone (0=at, 1=far)
+
             const scanDist = Math.abs(scanLine - fy);
             const proximity = Math.max(0, 1 - scanDist * 8);
 
-            // Base opacity pulses gently; spikes when scan is near
+
             const baseOpacity = 0.25 + wt * 0.15 + Math.sin(t * 0.8 + year * 0.4) * 0.08;
             const totalOpacity = Math.min(1, baseOpacity + proximity * 0.7);
 
             const isHovered = hoveredMs === ms;
             const finalOpacity = isHovered ? 1 : totalOpacity;
 
-            // Dot on the signal line
+
             const dotR = isHovered ? 4 : 2.5 + wt * 1.5;
             ctx.save();
             if (proximity > 0.1 || isHovered) {
@@ -1783,7 +1783,7 @@ initSidebarTypewriter();
             ctx.fill();
             ctx.restore();
 
-            // Tick line to label
+
             const labelX = sigX + 14 * dpr;
             const tickEndX = labelX - 4 * dpr;
             ctx.strokeStyle = SEPIA + `${finalOpacity * 0.6})`;
@@ -1793,12 +1793,12 @@ initSidebarTypewriter();
             ctx.lineTo(tickEndX, py);
             ctx.stroke();
 
-            // Year label
+
             ctx.font = monoFont;
             ctx.fillStyle = SEPIA + `${finalOpacity})`;
             ctx.fillText(String(year), labelX, py + 3 * dpr);
 
-            // Event label (only when proximity or hover)
+
             if (proximity > 0.05 || isHovered || wt > 0.85) {
                 const labelOpacity = isHovered ? 1 : Math.max(wt > 0.85 ? 0.35 : 0, proximity * 0.9);
                 ctx.font = serifFont;
@@ -1806,13 +1806,13 @@ initSidebarTypewriter();
                 ctx.fillText(label, labelX, py - 5 * dpr);
             }
 
-            // Impact bar — tiny horizontal bar proportional to weight
+
             const barW = wt * 28 * dpr;
             ctx.fillStyle = ACCENT + `${finalOpacity * 0.55})`;
             ctx.fillRect(axisX - barW - 6 * dpr, py - 1, barW, 2);
         }
 
-        // === PARTICLES ===
+
         particles = particles.filter(p => p.life > 0);
         for (const p of particles) {
             ctx.fillStyle = SEPIA + `${p.life * 0.7})`;
@@ -1824,7 +1824,7 @@ initSidebarTypewriter();
             p.life -= p.decay;
         }
 
-        // === YEAR LABELS on left edge ===
+
         ctx.font = monoFont;
         for (const yr of [1994, 2000, 2005, 2010, 2015, 2020, 2025]) {
             const fy = (yr - 1994) / 31;
@@ -1833,26 +1833,26 @@ initSidebarTypewriter();
             ctx.fillText(String(yr), 4 * dpr, py + 3 * dpr);
         }
 
-        // CRT vignette
+
         const vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.3, W / 2, H / 2, H * 0.85);
         vig.addColorStop(0, 'rgba(0,0,0,0)');
         vig.addColorStop(1, 'rgba(0,0,0,0.45)');
         ctx.fillStyle = vig;
         ctx.fillRect(0, 0, W, H);
 
-        // === ADVANCE TIME ===
+
         t += 0.016;
         scanLine += 0.0018;
         if (scanLine > 1.04) scanLine = -0.04;
 
-        // Random glitch moments
+
         glitchTimer = Math.max(0, glitchTimer - 0.05);
         if (Math.random() < 0.003) glitchTimer = 1;
 
         raf = requestAnimationFrame(draw);
     }
 
-    // Mouse hover for milestone highlight
+
     canvas.addEventListener('mousemove', (e) => {
         const rect = canvas.getBoundingClientRect();
         const my = (e.clientY - rect.top) * devicePixelRatio;
@@ -1891,14 +1891,14 @@ initSidebarTypewriter();
 
     window.addEventListener('resize', () => { resize(); });
 
-    // Trigger when scrolled into view
+
     const obs = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) { start(); obs.disconnect(); }
     }, { threshold: 0.1 });
     obs.observe(canvas);
 })();
 
-// ── HERO GRID ──
+
 function buildHeroGrid() {
     const grid = document.getElementById('heroGrid');
     const years = [];
@@ -1913,7 +1913,7 @@ function buildHeroGrid() {
 }
 buildHeroGrid();
 
-// ── YEAR SLIDER ──
+
 const slider = document.getElementById('yearSlider');
 const bigYear = document.getElementById('bigYear');
 
@@ -1925,7 +1925,7 @@ slider.addEventListener('input', () => {
     window._autoload = setTimeout(() => loadYear(yr), 500);
 });
 
-// ── PRESETS CAROUSEL ──
+
 (function () {
     const track = document.getElementById('presetsTrack');
     const prevBtn = document.getElementById('presetPrev');
@@ -1937,7 +1937,7 @@ slider.addEventListener('input', () => {
     }
 
     function getStep() {
-        // step = width of ~4 buttons + gaps
+
         const btn = track.querySelector('.preset-btn');
         if (!btn) return 200;
         return (btn.offsetWidth + 8) * 4;
@@ -1976,7 +1976,7 @@ slider.addEventListener('input', () => {
     window.addEventListener('resize', updateCarousel);
     setTimeout(updateCarousel, 100);
 
-    // Scroll active preset into view in carousel
+
     function scrollActiveIntoView(btn) {
         if (isMobile()) return;
         const wrapper = track.parentElement;
@@ -2005,7 +2005,7 @@ slider.addEventListener('input', () => {
     });
 })();
 
-// ── TABS ──
+
 document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', () => {
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -2015,7 +2015,7 @@ document.querySelectorAll('.tab').forEach(tab => {
     });
 });
 
-// ── LOAD YEAR ──
+
 async function loadYear(year) {
     showPage('home');
     const loadEl = document.getElementById('loading');
@@ -2157,13 +2157,13 @@ function scrollToExplore() {
     }, 50);
 }
 
-// FAQ accordion
+
 function toggleFaq(el) {
     el.classList.toggle('open');
 }
 
-// Nav CTA
+
 document.getElementById('enterYearBtn').addEventListener('click', scrollToExplore);
 
-// Load default
+
 setTimeout(() => { loadYear(2004); }, 200);

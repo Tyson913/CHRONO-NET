@@ -287,7 +287,7 @@
         color: var(--paper);
     }
 
-    /* ── SECTION COMMON ── */
+
     .section-label {
         font-family: var(--mono);
         font-size: 0.68rem;
@@ -307,7 +307,7 @@
         background: rgba(196, 170, 133, 0.2);
     }
 
-    /* ── YEAR SELECTOR ── */
+
     .year-selector {
         padding: 6rem 3rem;
         border-top: 0.5px solid rgba(196, 170, 133, 0.15);
@@ -451,7 +451,7 @@
         color: var(--paper);
     }
 
-    /* ── RESULTS ── */
+
     .results-section {
         padding: 4rem 3rem 8rem;
         display: none;
@@ -492,7 +492,7 @@
         text-transform: uppercase;
     }
 
-    /* Category tabs */
+
     .category-tabs {
         display: flex;
         flex-wrap: wrap;
@@ -532,7 +532,7 @@
         border-bottom: 1.5px solid var(--paper);
     }
 
-    /* Content panels */
+
     .content-panel {
         display: none;
         animation: fadeUp 0.4s ease;
@@ -554,7 +554,7 @@
         }
     }
 
-    /* ── VIDEO GRID ── */
+
     .mag-grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -713,7 +713,7 @@
         background: var(--sepia-light);
     }
 
-    /* ── MUSIC CHART ── */
+
     .chart-list {
         display: flex;
         flex-direction: column;
@@ -787,7 +787,7 @@
         text-align: right;
     }
 
-    /* ── EVENTS ── */
+
     .events-list {
         display: flex;
         flex-direction: column;
@@ -861,7 +861,7 @@
         line-height: 1.6;
     }
 
-    /* ── MEME GRID ── */
+
     .meme-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -919,7 +919,7 @@
         letter-spacing: 0.08em;
     }
 
-    /* ── WEBSITES ── */
+
     .sites-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -977,7 +977,7 @@
         letter-spacing: 0.08em;
     }
 
-    /* ── FEATURES ── */
+
     .features {
         padding: 8rem 3rem;
         border-top: 0.5px solid rgba(196, 170, 133, 0.12);
@@ -1051,7 +1051,7 @@
         line-height: 1.6;
     }
 
-    /* ── MANIFESTO ── */
+
     .manifesto {
         padding: 8rem 3rem;
         border-top: 0.5px solid rgba(196, 170, 133, 0.12);
@@ -1061,7 +1061,7 @@
         align-items: start;
     }
 
-    /* ── MANIFESTO SIDEBAR ── */
+
     .manifesto-sidebar {
         position: relative;
         display: flex;
@@ -1113,7 +1113,7 @@
         gap: 3rem;
     }
 
-    /* ── FOOTER ── */
+
     footer {
         padding: 3rem;
         border-top: 0.5px solid rgba(196, 170, 133, 0.12);
@@ -1156,7 +1156,7 @@
         font-weight: 400;
     }
 
-    /* ── LOADING ── */
+
     .loading-overlay {
         display: none;
         position: fixed;
@@ -1232,9 +1232,7 @@
         background: rgba(196, 170, 133, 0.12);
     }
 
-    /* ══════════════════════════════════
-       ARCHIVE PAGE
-    ══════════════════════════════════ */
+
     .page-hero {
         min-height: 40vh;
         display: flex;
@@ -1279,7 +1277,7 @@
         line-height: 1.7;
     }
 
-    /* Archive grid */
+
     .archive-body {
         padding: 5rem 3rem 8rem;
     }
@@ -1350,7 +1348,7 @@
         color: var(--sepia-light);
     }
 
-    /* Stats band */
+
     .archive-stats {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -1382,9 +1380,7 @@
         color: var(--sepia);
     }
 
-    /* ══════════════════════════════════
-       ABOUT PAGE
-    ══════════════════════════════════ */
+
     .about-body {
         padding: 5rem 3rem 8rem;
     }
@@ -1396,7 +1392,7 @@
         margin-bottom: 6rem;
     }
 
-    /* about-sidebar-label styles defined above */
+
 
     .about-lead {
         font-family: var(--serif);
@@ -1485,7 +1481,7 @@
         max-width: 700px;
     }
 
-    /* ── ABOUT SIDEBAR MEMORY WEB ── */
+
     .about-sidebar-label {
         display: block;
         position: relative;
@@ -1590,9 +1586,7 @@
         transform: rotate(180deg);
     }
 
-    /* ══════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════ */
+
     @media (max-width: 1024px) {
         .features-grid {
             grid-template-columns: repeat(3, 1fr);
@@ -1607,7 +1601,7 @@
         }
     }
 
-    /* Hide nav-close on desktop */
+
     .nav-close {
         display: none;
     }
@@ -1669,7 +1663,7 @@
             margin-top: 0.4rem;
         }
 
-        /* Close button inside nav — visible on mobile only */
+
         .nav-close {
             display: none;
             position: absolute;
