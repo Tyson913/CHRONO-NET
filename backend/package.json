@@ -1,0 +1,15 @@
+{
+  "name": "chrononet-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dependency-free ChronoNet backend for Firebase Realtime Database.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seedFirebase.js",
+    "seed:dry-run": "node seedFirebase.js --dry-run"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1031,11 +1031,57 @@ const DATA = {
     }
 };
 
+let ARCHIVE_DATA = DATA;
+let archiveDataPromise = null;
+window.CHRONONET_DATA_SOURCE = 'embedded';
+
+async function loadArchiveData() {
+    if (archiveDataPromise) return archiveDataPromise;
+
+    archiveDataPromise = (async () => {
+        if (window.location.protocol === 'file:') {
+            return ARCHIVE_DATA;
+        }
+
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 8000);
+
+        try {
+            const response = await fetch('/api/years', {
+                headers: { 'accept': 'application/json' },
+                signal: controller.signal,
+            });
+
+            if (!response.ok) {
+                throw new Error(`Archive API returned ${response.status}`);
+            }
+
+            const payload = await response.json();
+            const years = payload.years || payload;
+
+            if (years && typeof years === 'object' && Object.keys(years).length) {
+                ARCHIVE_DATA = years;
+                window.CHRONONET_DATA_SOURCE = payload.source || 'api';
+            }
+        } catch (error) {
+            window.CHRONONET_DATA_SOURCE = 'embedded-fallback';
+            console.warn('Using embedded ChronoNet archive data.', error);
+        } finally {
+            clearTimeout(timeout);
+        }
+
+        return ARCHIVE_DATA;
+    })();
+
+    return archiveDataPromise;
+}
+
 function getDataForYear(year) {
-    const years = Object.keys(DATA).map(Number).sort((a, b) => a - b);
+    const source = ARCHIVE_DATA || DATA;
+    const years = Object.keys(source).map(Number).sort((a, b) => a - b);
     let closest = years[0];
     for (const y of years) { if (y <= year) closest = y; }
-    return { data: DATA[closest], closestYear: closest };
+    return { data: source[closest], closestYear: closest };
 }
 
 // ── PAGE SYSTEM ──
@@ -1842,12 +1888,14 @@ document.querySelectorAll('.tab').forEach(tab => {
 });
 
 // ── LOAD YEAR ──
-function loadYear(year) {
+async function loadYear(year) {
     showPage('home');
     const loadEl = document.getElementById('loading');
     const loadYearEl = document.getElementById('loading-year');
     loadYearEl.textContent = year;
     loadEl.classList.add('active');
+
+    await loadArchiveData();
 
     setTimeout(() => {
         loadEl.classList.remove('active');
