@@ -5,3 +5,5 @@ backend/*.log
 .edge-profile-*
 README.md
 .vercel
+vercel.json
+.vercelignore
